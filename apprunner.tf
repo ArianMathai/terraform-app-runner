@@ -1,5 +1,10 @@
+resource "random_string" "suffix" {
+  length  = 8
+  special = false
+}
+
 resource "aws_apprunner_service" "service" {
-  service_name = var.prefix
+  service_name = "${var.prefix}-${random_string.suffix.result}"
   source_configuration {
 
     authentication_configuration {
